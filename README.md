@@ -1,3 +1,3 @@
-- Using k_Means, the model can take an image of any resolutions and the number of clusters, k, as an Input.
-- Next, it looks for the most frequent colors and take k of them and cluster around them.
+- Using k_Means, the model can take an image of any resolution and the number of clusters, k, as an Input.
+- Next, it looks for the most common colors and take k of them and cluster around them.
 - The output is the compressed image along with the common
