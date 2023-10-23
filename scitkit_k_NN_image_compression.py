@@ -7,10 +7,16 @@ import cv2 # pip3 install opencv-python-headless
 
 # What are the files in this dir?
 import os
-for dirname, _, filenames in os.walk('./'):
+# print the dir for all the files within the dir
+for dirname, dirnames, filenames in os.walk('./'):
+    # Remove '.git' and 'compressed' from the list of subdirs to avoid walking into it
+    if '.git' in dirnames:
+        dirnames.remove('.git')
+    if 'compressed' in dirnames:
+        dirnames.remove('compressed')
     for filename in filenames:
         print(os.path.join(dirname, filename))
-
+        
 # Input
 image_path = str(input("Please enter the path/to/image: "))
 
@@ -99,6 +105,10 @@ for idx, color in enumerate(sorted_palette[0]):
     start_y = idx * color_bar_height
     end_y = (idx + 1) * color_bar_height
     color_bar[start_y:end_y, :] = color
+
+# Fill any remaining space with the last color
+if end_y < h:
+    color_bar[end_y:, :] = sorted_palette[0][-1]
 
 # Concatenate the compressed image and the color bar
 concatenated_image = np.hstack((compressed_image, color_bar))
